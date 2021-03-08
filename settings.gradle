@@ -1,2 +1,7 @@
+include ':mywearr'
+include ':mywear'
+include ':asd'
+include ':myapplication'
+include ':app:myapplication'
 include ':app'
 rootProject.name = "KotlinSensors"

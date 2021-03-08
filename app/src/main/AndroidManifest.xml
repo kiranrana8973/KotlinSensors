@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinSensors">
-        <activity android:name=".AccelerometerActivity"></activity>
+        <activity android:name=".LightActivity"></activity>
+        <activity android:name=".ProximityActivity" />
+        <activity android:name=".GyroscopeActivity" />
+        <activity android:name=".AccelerometerActivity" />
         <activity android:name=".DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

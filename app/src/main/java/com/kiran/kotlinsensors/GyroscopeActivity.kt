@@ -8,44 +8,46 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 
-class AccelerometerActivity : AppCompatActivity(), SensorEventListener {
+class GyroscopeActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var tvAcceleroemter: TextView
+    private lateinit var tvGyroscope: TextView
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_accelerometer)
-        tvAcceleroemter = findViewById(R.id.tvAcceleroemter)
+        setContentView(R.layout.activity_gyroscope)
+
+        tvGyroscope = findViewById(R.id.tvGyroscope)
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
         if (!checkSensor())
             return
         else {
-            sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+            sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE)
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL)
         }
     }
 
     private fun checkSensor(): Boolean {
         var flag = true
-        if (sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) == null) {
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) == null) {
             flag = false
         }
         return flag
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        val values = event!!.values
-        val xAxis = values[0]
-        val yAxis = values[1]
-        val zAxis = values[2]
+        val values = event!!.values[1]
+        if (values < 0)
+            tvGyroscope.text = "Left"
+        else if (values > 0)
+            tvGyroscope.text = "Right"
 
-        tvAcceleroemter.text = "x: $xAxis , y: $yAxis , z: $zAxis"
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
     }
 }
+
 
