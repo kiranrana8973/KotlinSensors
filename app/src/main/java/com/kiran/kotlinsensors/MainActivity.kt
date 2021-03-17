@@ -18,6 +18,5 @@ class MainActivity : AppCompatActivity() {
         etSecond = findViewById(R.id.etSecond)
         tvResult = findViewById(R.id.tvResult)
 
-        
     }
 }
